@@ -17,14 +17,19 @@ Easily run your **C, C++, and Python** files without leaving the editor.
 
 ---
 
-## 📸 Preview<img width="415" height="107" alt="Screenshot 2025-08-20 213038" src="https://github.com/user-attachments/assets/bc5b1bef-78e7-4904-b9a6-dca946ce5fce" />
+## 📸 Preview
 
-![Extension Preview](https://raw.githubusercontent.com/IamNishant51/CODE-RUNNER-vscode-extension/main/screenshots/preview.png)
+<img width="415" height="107" alt="Screenshot 2025-08-20 213038" src="https://github.com/user-attachments/assets/bc5b1bef-78e7-4904-b9a6-dca946ce5fce" />
+
+---
+
+<img width="1555" height="949" alt="Screenshot 2025-08-20 213051" src="https://github.com/user-attachments/assets/9caf8a57-50f5-4510-9fc7-560ebb3f14b3" />
 
 
 ---
 
 ## 🚀 Installation
+
 
 1. Clone the repository:
    ```bash
