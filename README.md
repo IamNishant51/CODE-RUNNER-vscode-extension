@@ -18,7 +18,7 @@ Easily run your **C, C++, and Python** files without leaving the editor.
 ---
 
 ## 📸 Preview
-![Extension Preview](https://raw.githubusercontent.com/IamNishant51/CODE-RUNNER-vscode-extension/main/screenshots/preview.png)
+![Extension Preview](https://github.com/IamNishant51/CODE-RUNNER-vscode-extension/blob/main/screenshot/preview.png)
 
 
 ---
