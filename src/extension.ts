@@ -3,10 +3,7 @@ import * as child_process from "child_process";
 import * as path from "path";
 import * as fs from "fs";
 import * as os from "os";
-
-// Store a map of panel IDs to their associated child processes
 const activeProcesses: Map<string, child_process.ChildProcessWithoutNullStreams> = new Map();
-
 export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand("codeRunner.openPanel", () => {
@@ -19,9 +16,6 @@ export function activate(context: vscode.ExtensionContext) {
                     retainContextWhenHidden: true,
                 }
             );
-
-            // Generate a unique ID for this panel to manage its child process
-            // Using a simple timestamp for a unique ID within the session
             const panelId = `panel-${Date.now()}-${Math.random().toString(36).substring(7)}`;
 
             const activeEditor = vscode.window.activeTextEditor;
@@ -46,12 +40,10 @@ export function activate(context: vscode.ExtensionContext) {
                 if (message.command === "runCode") {
                     const language = message.language;
                     const fileName = message.fileName;
-
-                    // Clean up any previous process associated with this panel
                     if (activeProcesses.has(panelId)) {
-                        activeProcesses.get(panelId)?.kill('SIGKILL'); // Use SIGKILL for more aggressive termination
+                        activeProcesses.get(panelId)?.kill('SIGKILL'); 
                         activeProcesses.delete(panelId);
-                        panel.webview.postMessage({ command: "removeInputPrompt" }); // Ensure prompt is gone
+                        panel.webview.postMessage({ command: "removeInputPrompt" }); 
                     }
 
                     if (!fileName) {
@@ -63,7 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
                     }
 
                     panel.webview.postMessage({
-                        command: "clearOutput", // Clear previous run output
+                        command: "clearOutput", 
                     });
                     panel.webview.postMessage({
                         command: "appendOutput",
@@ -77,15 +69,12 @@ export function activate(context: vscode.ExtensionContext) {
                         process.stdout.on("data", (data) => {
                             const chunk = data.toString();
                             panel.webview.postMessage({ command: "appendOutput", output: chunk });
-
-                            // Check if the program is waiting for input (heuristic)
-                            // More specific check for common interactive prompts
                             const lowerChunk = chunk.toLowerCase();
                             const requiresInput =
-                                lowerChunk.includes("enter") || // "Enter Roll Number"
-                                lowerChunk.includes("subject") && lowerChunk.includes(":") || // "Subject 1:"
-                                lowerChunk.includes("name:") || // "Enter Name:"
-                                lowerChunk.includes("students:"); // "Enter number of students:"
+                                lowerChunk.includes("enter") || 
+                                lowerChunk.includes("subject") && lowerChunk.includes(":") || 
+                                lowerChunk.includes("name:") || 
+                                lowerChunk.includes("students:"); 
 
                             if (requiresInput && process.stdin.writable) {
                                 panel.webview.postMessage({ command: "requestInput" });
@@ -95,13 +84,12 @@ export function activate(context: vscode.ExtensionContext) {
                         process.stderr.on("data", (data) => {
                             const chunk = data.toString();
                             panel.webview.postMessage({ command: "appendOutput", output: `Error: ${chunk}` });
-                            if (process.stdin.writable) { // Even on error, it might wait for input
+                            if (process.stdin.writable) { 
                                 panel.webview.postMessage({ command: "requestInput" });
                             }
                         });
-
                         process.on("close", (code) => {
-                            panel.webview.postMessage({ command: "removeInputPrompt" }); // Remove input field on close
+                            panel.webview.postMessage({ command: "removeInputPrompt" }); 
                             activeProcesses.delete(panelId);
                             if (code !== 0) {
                                 panel.webview.postMessage({
@@ -115,7 +103,6 @@ export function activate(context: vscode.ExtensionContext) {
                                 });
                             }
                         });
-
                         process.on("error", (spawnErr) => {
                             panel.webview.postMessage({
                                 command: "appendOutput",
@@ -124,7 +111,6 @@ export function activate(context: vscode.ExtensionContext) {
                             panel.webview.postMessage({ command: "removeInputPrompt" });
                             activeProcesses.delete(panelId);
                         });
-
                     } catch (err: any) {
                         panel.webview.postMessage({
                             command: "appendOutput",
@@ -136,7 +122,6 @@ export function activate(context: vscode.ExtensionContext) {
                 } else if (message.command === "clearOutput") {
                     panel.webview.postMessage({ command: "clearOutput" });
                     panel.webview.postMessage({ command: "removeInputPrompt" });
-                    // Kill any active process if clearing output
                     if (activeProcesses.has(panelId)) {
                         activeProcesses.get(panelId)?.kill('SIGKILL');
                         activeProcesses.delete(panelId);
@@ -145,11 +130,8 @@ export function activate(context: vscode.ExtensionContext) {
                     const input = message.input;
                     const process = activeProcesses.get(panelId);
                     if (process && process.stdin && !process.stdin.writableEnded) {
-                        // Append input to output display *before* sending to stdin
-                        // This makes it feel like the user is typing directly into the console
                         panel.webview.postMessage({ command: "appendOutput", output: input + "\n" });
                         process.stdin.write(input + "\n");
-                        // Immediately hide the prompt as input is sent, it will reappear if needed
                         panel.webview.postMessage({ command: "removeInputPrompt" });
                     } else {
                         panel.webview.postMessage({ command: "appendOutput", output: "\nNo active program to send input to or stdin not writable.\n" });
@@ -157,8 +139,6 @@ export function activate(context: vscode.ExtensionContext) {
                     }
                 }
             });
-
-            // Handle panel closing: kill the associated process
             panel.onDidDispose(() => {
                 if (activeProcesses.has(panelId)) {
                     activeProcesses.get(panelId)?.kill('SIGKILL');
@@ -583,13 +563,10 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
     </html>
   `;
 }
-
-
-// Modified to return the child process, which will be managed by the panel's lifecycle
 async function runCodeProcess(
     language: string,
     fileName: string
-): Promise<child_process.ChildProcessWithoutNullStreams> { // Returns the child process
+): Promise<child_process.ChildProcessWithoutNullStreams> { 
     const tempDir = path.join(os.tmpdir(), "vscode-code-runner-temp");
     if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
     const filePath = path.join(tempDir, fileName);
@@ -602,9 +579,7 @@ async function runCodeProcess(
     if (!fs.existsSync(workspaceFilePath)) {
         throw new Error(`File "${fileName}" not found in workspace. Please ensure the file exists in your workspace folder.`);
     }
-    // Read the content of the file from the user's workspace
     const fileContent = fs.readFileSync(workspaceFilePath, 'utf8');
-    // Write the content to a temporary file for execution
     fs.writeFileSync(filePath, fileContent);
 
     return new Promise((resolve, reject) => {
@@ -630,8 +605,6 @@ async function runCodeProcess(
                         cwd: tempDir,
                         shell: true,
                     });
-
-                    // Cleanup compiled executable and source file on process exit
                     childProcess.on('exit', () => {
                         try {
                             fs.unlinkSync(filePath);
@@ -641,7 +614,7 @@ async function runCodeProcess(
                         }
                     });
 
-                    resolve(childProcess); // Resolve with the child process
+                    resolve(childProcess); 
                 }
             );
         } else if (language === "python") {
@@ -650,8 +623,6 @@ async function runCodeProcess(
                 cwd: tempDir,
                 shell: true,
             });
-
-            // Cleanup source file on process exit
             childProcess.on('exit', () => {
                 try {
                     fs.unlinkSync(filePath);
@@ -660,18 +631,16 @@ async function runCodeProcess(
                 }
             });
 
-            resolve(childProcess); // Resolve with the child process
+            resolve(childProcess); 
         } else {
             reject("Language not supported.");
         }
     });
 }
-
 export function deactivate() {
-    // Kill any remaining active processes when the extension deactivates
     activeProcesses.forEach(proc => {
         try {
-            proc.kill('SIGKILL'); // Use SIGKILL for more aggressive termination
+            proc.kill('SIGKILL'); 
         } catch (e) {
             console.error("Failed to kill process during deactivate:", e);
         }
