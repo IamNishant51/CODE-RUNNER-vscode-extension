@@ -1,71 +1,31 @@
-# c-cpp-runner README
+# ⚡ Code Runner (VS Code Extension)
 
-This is the README for your extension "c-cpp-runner". After writing up a brief description, we recommend including the following sections.
-
-## Features
-
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
-
-For example if there is an image subfolder under your extension project workspace:
-
-\!\[feature X\]\(images/feature-x.png\)
-
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
-
-## Requirements
-
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
-
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
+A lightweight, minimal, and **aesthetic dark-themed code runner** inside VS Code.  
+Easily run your **C, C++, and Python** files without leaving the editor.  
 
 ---
 
-## Following extension guidelines
+## ✨ Features
 
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
+- 🖤 **Dark minimal UI** (designed for focus and readability)  
+- 📂 Run **C, C++ & Python** directly from VS Code  
+- ⚡ One-click **Run button** in the webview panel  
+- 📑 **Custom file name support** (default: `main.cpp`, `main.c`, or `main.py`)  
+- 💻 Displays **program output inside VS Code**  
+- ⌨️ **Interactive input support** → if your program asks for input, you can provide it via VS Code prompt  
+- 🧹 Auto-cleans up temporary files  
 
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
+---
 
-## Working with Markdown
+## 📸 Preview
 
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
+![Code Runner Screenshot](https://raw.githubusercontent.com/IamNishant51/CODE-RUNNER-vscode-extension/main/assets/preview.png)
 
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
+---
 
-## For more information
+## 🚀 Installation
 
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/IamNishant51/CODE-RUNNER-vscode-extension.git
+   cd CODE-RUNNER-vscode-extension

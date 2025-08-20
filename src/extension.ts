@@ -69,7 +69,6 @@ export function activate(context: vscode.ExtensionContext) {
     })
   );
 }
-
 function getWebviewContent(initialCode: string, initialLanguage: string): string {
   return `
     <!DOCTYPE html>
@@ -87,8 +86,8 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             
             body {
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
-                background: #fafbfc;
-                color: #24292f;
+                background: #0d1117;
+                color: #c9d1d9;
                 min-height: 100vh;
                 display: flex;
                 flex-direction: column;
@@ -96,15 +95,15 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             }
             
             .header {
-                background: #ffffff;
-                border-bottom: 1px solid #d0d7de;
+                background: #161b22;
+                border-bottom: 1px solid #30363d;
                 padding: 20px 32px;
             }
             
             .header h1 {
                 font-size: 20px;
                 font-weight: 600;
-                color: #24292f;
+                color: #c9d1d9;
                 display: flex;
                 align-items: center;
                 gap: 12px;
@@ -113,12 +112,12 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             .logo {
                 width: 24px;
                 height: 24px;
-                background: #24292f;
+                background: #58a6ff;
                 border-radius: 4px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                color: white;
+                color: #0d1117;
                 font-size: 12px;
                 font-weight: 700;
             }
@@ -135,8 +134,8 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             }
             
             .controls {
-                background: #ffffff;
-                border: 1px solid #d0d7de;
+                background: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 8px;
                 padding: 24px;
             }
@@ -157,30 +156,30 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             .label {
                 font-size: 13px;
                 font-weight: 500;
-                color: #656d76;
+                color: #8b949e;
             }
             
             .input, .select {
                 height: 40px;
                 padding: 8px 12px;
-                border: 1px solid #d0d7de;
+                border: 1px solid #30363d;
                 border-radius: 6px;
                 font-size: 14px;
-                background: #ffffff;
-                color: #24292f;
+                background: #0d1117;
+                color: #c9d1d9;
                 transition: border-color 0.2s ease;
                 outline: none;
                 font-family: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
             }
             
             .input:focus, .select:focus {
-                border-color: #0969da;
-                box-shadow: inset 0 0 0 1px #0969da;
+                border-color: #58a6ff;
+                box-shadow: inset 0 0 0 1px #58a6ff;
             }
             
             .run-button {
                 height: 40px;
-                background: #1f883d;
+                background: #238636;
                 color: #ffffff;
                 border: none;
                 border-radius: 6px;
@@ -196,17 +195,17 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             }
             
             .run-button:hover {
-                background: #1a7f37;
+                background: #2ea043;
             }
             
             .run-button:active {
-                background: #166f2c;
+                background: #196c2e;
             }
             
             .output-section {
                 flex: 1;
-                background: #ffffff;
-                border: 1px solid #d0d7de;
+                background: #161b22;
+                border: 1px solid #30363d;
                 border-radius: 8px;
                 display: flex;
                 flex-direction: column;
@@ -215,15 +214,15 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             
             .output-header {
                 padding: 16px 20px;
-                border-bottom: 1px solid #d0d7de;
-                background: #f6f8fa;
+                border-bottom: 1px solid #30363d;
+                background: #21262d;
                 border-radius: 8px 8px 0 0;
             }
             
             .output-title {
                 font-size: 14px;
                 font-weight: 600;
-                color: #24292f;
+                color: #c9d1d9;
             }
             
             .output-content {
@@ -232,8 +231,8 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
                 font-family: ui-monospace, 'SF Mono', Monaco, 'Cascadia Code', monospace;
                 font-size: 13px;
                 line-height: 1.6;
-                color: #24292f;
-                background: #ffffff;
+                color: #c9d1d9;
+                background: #0d1117;
                 white-space: pre-wrap;
                 word-wrap: break-word;
                 overflow-y: auto;
@@ -242,7 +241,7 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
             
             .output-content:empty::before {
                 content: 'Run your code to see output here...';
-                color: #8c959f;
+                color: #8b949e;
                 font-style: italic;
             }
             
@@ -352,6 +351,7 @@ function getWebviewContent(initialCode: string, initialLanguage: string): string
     </html>
   `;
 }
+
 
 async function runCodeWithInput(
   language: string,
