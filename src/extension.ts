@@ -9,18 +9,17 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.commands.registerCommand("codeRunner.openPanel", () => {
       const panel = vscode.window.createWebviewPanel(
         "codeRunner",
-        "Code Runner", // Title of the panel
+        "Code Runner",
         vscode.ViewColumn.One,
         {
           enableScripts: true,
-          retainContextWhenHidden: true, // Keep the state even when hidden
+          retainContextWhenHidden: true,
         }
       );
 
-      // Get the currently active editor's content and language
       const activeEditor = vscode.window.activeTextEditor;
       let initialCode = "";
-      let initialLanguage = "cpp"; // Default to C++
+      let initialLanguage = "cpp"; 
 
       if (activeEditor) {
         initialCode = activeEditor.document.getText();
@@ -40,7 +39,7 @@ export function activate(context: vscode.ExtensionContext) {
         if (message.command === "runCode") {
           const code = message.code;
           const language = message.language;
-          const fileName = message.fileName; // Get filename from webview
+          const fileName = message.fileName; 
 
           if (!fileName) {
             panel.webview.postMessage({
@@ -52,13 +51,13 @@ export function activate(context: vscode.ExtensionContext) {
 
           panel.webview.postMessage({
             command: "showOutput",
-            output: "Running code...", // Show a running indicator
+            output: "Running code...", 
           });
 
           try {
             const output = await runCodeWithInput(language, code, fileName);
             panel.webview.postMessage({ command: "showOutput", output });
-          } catch (err: any) { // Keep any here for broader error catching from child_process
+          } catch (err: any) { 
             panel.webview.postMessage({
               command: "showOutput",
               output: "❌ Error: " + (err.message || err.toString()),
@@ -358,25 +357,18 @@ async function runCodeWithInput(
   code: string,
   fileName: string
 ): Promise<string> {
-  // Since we're not getting code from the webview anymore, we need to read it from the file
   const tempDir = path.join(os.tmpdir(), "vscode-code-runner-temp");
   if (!fs.existsSync(tempDir)) fs.mkdirSync(tempDir, { recursive: true });
-
   const filePath = path.join(tempDir, fileName);
-  
-  // Check if the file exists in the workspace
   const workspaceFolders = vscode.workspace.workspaceFolders;
   if (!workspaceFolders) {
     throw new Error("No workspace folder is open. Please open a folder containing your code files.");
   }
-
   const workspaceFilePath = path.join(workspaceFolders[0].uri.fsPath, fileName);
   
   if (!fs.existsSync(workspaceFilePath)) {
     throw new Error(`File "${fileName}" not found in workspace. Please ensure the file exists in your workspace folder.`);
   }
-
-  // Read the code from the workspace file
   const fileCode = fs.readFileSync(workspaceFilePath, 'utf8');
   fs.writeFileSync(filePath, fileCode);
 
@@ -490,7 +482,6 @@ async function runCodeWithInput(
 }
 
 export function deactivate() {
-  // Clean up the temporary directory on deactivate if necessary
   const tempDir = path.join(os.tmpdir(), "vscode-code-runner-temp");
   if (fs.existsSync(tempDir)) {
     try {
