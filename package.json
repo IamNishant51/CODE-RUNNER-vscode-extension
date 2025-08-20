@@ -1,5 +1,5 @@
 {
-  "name": "C-C++-runner",
+  "name": "c-cpp-compiler",
   "displayName": "C-C++-runner",
   "description": "c-c++ compiler inside vs code ",
   "version": "0.0.1",
