@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2022", // Or "es6", "es2019", etc. compatible with Node.js version
+    "module": "commonjs",
+    "lib": [
+      "es2022"
+    ],
+    "allowJs": true,
+    "outDir": "out", // Or "dist" if you configure webpack to use "dist"
+    "rootDir": "src",
+    "strict": true, // Recommended for type safety
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".vscode-test"
+  ]
+}
