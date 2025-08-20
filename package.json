@@ -1,9 +1,9 @@
 {
   "name": "c-cpp-runner",
-  "displayName": "c-cpp-runner",
+  "displayName": "C-C++-runner",
   "description": "c-c++ compiler inside vs code ",
   "version": "0.0.1",
-   "publisher": "IamNishant51",
+  "publisher": "NishantUnavane",
   "engines": {
     "vscode": "^1.80.0"
   },
