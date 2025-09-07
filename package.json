@@ -2,7 +2,7 @@
   "name": "c-cpp-compiler",
   "displayName": "C-C++-runner",
   "description": "c-c++ compiler inside vs code ",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "NishantUnavane",
   "engines": {
     "vscode": "^1.80.0"
