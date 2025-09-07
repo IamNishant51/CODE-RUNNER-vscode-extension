@@ -1,0 +1,166 @@
+{
+  "name": "advanced-code-runner",
+  "displayName": "Advanced Code Runner",
+  "description": "Multi-language code runner with support for C, C++, Python, Java, JavaScript, TypeScript, Go, Rust, Ruby, PHP, and C#",
+  "version": "1.0.0",
+  "publisher": "NishantUnavane",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "icon": "icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IamNishant51/CODE-RUNNER-vscode-extension"
+  },
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Debuggers"
+  ],
+  "keywords": [
+    "code runner",
+    "c",
+    "c++",
+    "python",
+    "java",
+    "javascript",
+    "typescript",
+    "go",
+    "rust",
+    "ruby",
+    "php",
+    "csharp",
+    "compile",
+    "execute",
+    "multi-language",
+    "template",
+    "snippets"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "codeRunner.openPanel",
+        "title": "Open Code Runner Panel",
+        "category": "Code Runner"
+      },
+      {
+        "command": "codeRunner.runCurrentFile",
+        "title": "Run Current File",
+        "category": "Code Runner"
+      },
+      {
+        "command": "codeRunner.createTemplate",
+        "title": "Create Language Template",
+        "category": "Code Runner"
+      },
+      {
+        "command": "codeRunner.openSettings",
+        "title": "Open Code Runner Settings",
+        "category": "Code Runner"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "command": "codeRunner.runCurrentFile",
+          "when": "resourceExtname =~ /\\.(c|cpp|cxx|cc|py|java|js|ts|go|rs|rb|php|cs)$/",
+          "group": "navigation"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "codeRunner.runCurrentFile",
+          "when": "resourceExtname =~ /\\.(c|cpp|cxx|cc|py|java|js|ts|go|rs|rb|php|cs)$/",
+          "group": "navigation"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "codeRunner.runCurrentFile",
+        "key": "ctrl+f5",
+        "mac": "cmd+f5",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "codeRunner.openPanel",
+        "key": "ctrl+shift+r",
+        "mac": "cmd+shift+r"
+      }
+    ],
+    "configuration": {
+      "title": "Advanced Code Runner",
+      "properties": {
+        "codeRunner.executorMap": {
+          "type": "object",
+          "default": {
+            "c": "gcc $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+            "cpp": "g++ $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+            "python": "python $fileName",
+            "java": "javac $fileName && java $fileNameWithoutExt",
+            "javascript": "node $fileName",
+            "typescript": "tsc $fileName && node $fileNameWithoutExt.js",
+            "go": "go run $fileName",
+            "rust": "rustc $fileName -o $fileNameWithoutExt && ./$fileNameWithoutExt",
+            "ruby": "ruby $fileName",
+            "php": "php $fileName",
+            "csharp": "csc $fileName && ./$fileNameWithoutExt.exe"
+          },
+          "description": "Set the executor for each language",
+          "scope": "resource"
+        },
+        "codeRunner.runInTerminal": {
+          "type": "boolean",
+          "default": false,
+          "description": "Whether to run code in integrated terminal",
+          "scope": "resource"
+        },
+        "codeRunner.clearPreviousOutput": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to clear previous output before new run",
+          "scope": "resource"
+        },
+        "codeRunner.saveFileBeforeRun": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to save file before running",
+          "scope": "resource"
+        },
+        "codeRunner.showExecutionMessage": {
+          "type": "boolean",
+          "default": true,
+          "description": "Whether to show start and done messages",
+          "scope": "resource"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "^22.17.2",
+    "@types/vscode": "^1.80.0",
+    "@typescript-eslint/eslint-plugin": "^8.39.0",
+    "@typescript-eslint/parser": "^8.39.0",
+    "@vscode/test-cli": "^0.0.11",
+    "@vscode/test-electron": "^2.5.2",
+    "eslint": "^9.32.0",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.9.2",
+    "webpack": "^5.101.0",
+    "webpack-cli": "^6.0.1"
+  }
+}
