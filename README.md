@@ -1,37 +1,87 @@
-# ⚡ Code Runner (VS Code Extension)
+# VS Code Code Runner Extension 🚀
 
-A lightweight, minimal, and **aesthetic dark-themed code runner** inside VS Code.  
-Easily run your **C, C++, and Python** files without leaving the editor.  
+A powerful VS Code extension that allows you to run C, C++, and Python code directly within VS Code without switching between applications or using online compilers.
 
----
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=flat&logo=typescript&logoColor=white)
+![VS Code](https://img.shields.io/badge/Visual_Studio_Code-0078D4?style=flat&logo=visual-studio-code&logoColor=white)
 
-## ✨ Features
+## Features ✨
 
-- 🖤 **Dark minimal UI** (designed for focus and readability)  
-- 📂 Run **C, C++ & Python** directly from VS Code  
-- ⚡ One-click **Run button** in the webview panel  
-- 📑 **Custom file name support** (default: `main.cpp`, `main.c`, or `main.py`)  
-- 💻 Displays **program output inside VS Code**  
-- ⌨️ **Interactive input support** → if your program asks for input, you can provide it via VS Code prompt  
-- 🧹 Auto-cleans up temporary files  
+- **Multi-language Support**: Run C, C++, and Python code seamlessly
+- **Real-time Output**: View program output directly in VS Code
+- **Interactive Input**: Support for program input during execution
+- **Clean Interface**: Modern and intuitive user interface
+- **File Management**: Automatic file handling and cleanup
+- **Cross-platform**: Works on Windows, Linux, and macOS
 
----
+## Prerequisites 🛠️
 
-## 📸 Preview
+Ensure you have the following installed:
+- Visual Studio Code
+- For C/C++: GCC/G++ compiler
+- For Python: Python interpreter
+- Required extensions dependencies will be automatically installed
 
-<img width="415" height="107" alt="Screenshot 2025-08-20 213038" src="https://github.com/user-attachments/assets/bc5b1bef-78e7-4904-b9a6-dca946ce5fce" />
+## Installation 📥
 
----
+1. Open VS Code
+2. Go to Extensions (Ctrl+Shift+X)
+3. Search for "Code Runner"
+4. Click Install
 
-<img width="1555" height="949" alt="Screenshot 2025-08-20 213051" src="https://github.com/user-attachments/assets/9caf8a57-50f5-4510-9fc7-560ebb3f14b3" />
+## Usage 💻
 
+1. Open your code file in VS Code
+2. Click the "Code Runner" icon in the activity bar
+3. Enter your file name (e.g., main.cpp, main.c, or main.py)
+4. Select your programming language
+5. Click "Run" to execute your code
+6. View output in the integrated terminal
 
----
+### Supported File Types
+- `.cpp` (C++ files)
+- `.c` (C files)
+- `.py` (Python files)
 
-## 🚀 Installation
+## Features in Detail 🔍
 
+### Interactive Console
+- Real-time input/output handling
+- Support for interactive programs
+- Clear output formatting
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/IamNishant51/CODE-RUNNER-vscode-extension.git
-   cd CODE-RUNNER-vscode-extension
+### Error Handling
+- Compilation error detection
+- Runtime error reporting
+- Clear error messages
+
+### File Management
+- Automatic temporary file creation
+- Clean workspace management
+- Automatic cleanup after execution
+
+## Contributing 🤝
+
+Contributions are welcome! Feel free to:
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a Pull Request
+
+## License 📄
+
+This project is licensed under the MIT License - see the LICENSE file for details
+
+## Author ✍️
+
+Nishant Unavane
+- GitHub: [@IamNishant51](https://github.com/IamNishant51)
+- Email: anonymouslucifer400@gmail.com
+
+## Acknowledgments 🙏
+
+- VS Code Extension API
+- TypeScript team
+- All contributors and users
