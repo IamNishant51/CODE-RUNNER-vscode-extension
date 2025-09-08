@@ -85,3 +85,7 @@ Nishant Unavane
 - VS Code Extension API
 - TypeScript team
 - All contributors and users
+
+---
+
+Made with ❤️ by Nishant Unavane
